@@ -1,8 +1,22 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, scoped_session
-import os
-from dotenv import load_dotenv
+from sqlalchemy import create_engine                                                                                                                from sqlalchemy.ext.declarative import declarative_base                                                                                             from sqlalchemy.orm import sessionmaker, scoped_session                                                                                             import os                                                                                                                                           from dotenv import load_dotenv
+
+"""
+Database configuration and session management.
+
+This module handles the creation of the database engine, session management,
+and provides utility functions for database operations.
+
+Modules:
+    sqlalchemy: SQLAlchemy library used for ORM and session management.
+    os: Used to retrieve environment variables.
+    dotenv: Used to load environment variables from the .env file.
+
+Classes:
+    DBSession: Context manager for handling database sessions.
+
+Functions:
+    get_db: Provides a new instance of DBSession for database operations.
+"""
 
 load_dotenv()
 
@@ -22,7 +36,11 @@ Base.query = SessionLocal.query_property()
 
 class DBSession:
     """
-    This class handles the opening and closing of database sessions
+    Handles the opening and closing of database sessions.
+    
+    Methods:
+        __enter__: Opens a new session.
+        __exit__: Closes the session.
     """
     def __enter__(self):
         self.db = SessionLocal()
@@ -34,8 +52,8 @@ class DBSession:
 def get_db():
     """
     Provides a new instance of DBSession for database operations.
-    
+
     Returns:
-        An instance of DBSession
+        DBSession: An instance of DBSession for use in database operations.
     """
     return DBSession()

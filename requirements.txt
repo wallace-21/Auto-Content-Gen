@@ -1,0 +1,9 @@
+flask
+sqlalchemy
+openai
+python-dotenv
+requests
+tweepy
+facebook-sdk
+linkedin-api
+instagram-graph-api
